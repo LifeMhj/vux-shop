@@ -13,7 +13,7 @@
             <scroller-lnline :data_img="data_img"></scroller-lnline>
         </div>
         <div class="components-home-grid-goods">
-            <grid-goods></grid-goods>
+            <grid-goods :goodsData="goodsData"></grid-goods>
         </div>
         <div class="components-home-flexbox">
             <flexbox orient="vertical" :gutter="0">
@@ -22,18 +22,23 @@
             </flexbox>
         </div>
         <div>
-            <grid-goods></grid-goods>
+            <grid-goods :goodsData="goodsData"></grid-goods>
+            <grid-goods :goodsData="goodsData"></grid-goods>
+        </div>
+        <div>
+            <tabbar-base></tabbar-base>
         </div>
     </div>
 </template>
 
 <script>
-    import { Flexbox, FlexboxItem } from 'vux'
+    import {Flexbox, FlexboxItem} from 'vux'
     import BaseSwiper from '@/base/swiper/base-swiper'
     import SearchGoods from '@/base/search/search-goods'
     import BaseNotice from '@/base/notice/base-notice'
     import scrollerLnline from '@/base/scroller/scroller-lnline'
     import gridGoods from '@/base/grid/grid-goods'
+    import tabbarBase from '@/base/tab/tabbar-base'
 
     export default {
         components: {
@@ -43,7 +48,8 @@
             scrollerLnline,
             gridGoods,
             Flexbox,
-
+            FlexboxItem,
+            tabbarBase
         },
         data() {
             return {
@@ -52,19 +58,49 @@
                 baseList: [{
                     url: 'javascript:',
                     img: 'static/image/test/1.jpg'
-                    },{
+                }, {
                     url: 'javascript:',
                     img: 'static/image/test/2.jpg'
-                    },{
+                }, {
                     url: 'javascript:',
                     img: 'static/image/test/3.jpg'
-                    },{
+                }, {
                     url: 'javascript:',
                     img: 'static/image/test/4.jpg'
-                    },{
+                }, {
                     url: 'javascript:',
                     img: 'static/image/test/5.jpg',
 
+                }],
+                goodsData: [{
+                    img: 'static/image/test/2.png',
+                    goodsName: "这里是图片标题",
+                    price: "20.00",
+                },{
+                    img: 'static/image/test/2.png',
+                    goodsName: "这里是图片标题",
+                    price: "20.00"
+                }],
+                tabArray : [{
+                    url: '',
+                    icon: 'static/image/base/tab-home.png',
+                    iconActive: 'static/image/base/tab-home-selected.png',
+                    title: '主页'
+                }, {
+                    url: '',
+                    icon: 'static/image/base/tab-class.png',
+                    iconActive: 'static/image/base/tab-class-selected.png',
+                    title: '分类'
+                }, {
+                    url: '',
+                    icon: 'static/image/base/tab-cart.png',
+                    iconActive: 'static/image/base/tab-cart-selected.png',
+                    title: '购物车'
+                }, {
+                    url: '',
+                    icon: 'static/image/base/tab-user.png',
+                    iconActive: 'static/image/base/tab-user-selected.png',
+                    title: '个人'
                 }]
             }
         }
@@ -82,7 +118,7 @@
         margin-bottom: 10px;
     }
 
-    .components-home-grid-goods{
+    .components-home-grid-goods {
         margin-bottom: 10px;
     }
 </style>

@@ -5,12 +5,10 @@
             <i class=" fa" :class="icon" :style="{color: iconColor}" style="float:left"></i>
         </div>
 
-        <div class="weui-cell__ft">
-            <div class="vux-marquee" :style="{height: height + 'px',color : textColor}">
-                <ul class="vux-marquee-box" ref="box" :style="{transform: `translate3d(0,${currenTranslateY}px,0)`, transition: `transform ${noAnimate ? 0 : duration}ms`}">
-                    <marquee-item v-for="item in this.noticeArray">{{item}}</marquee-item>
-                </ul>
-            </div>
+        <div class="vux-marquee" :style="{height: height + 'px',color : textColor}">
+            <ul class="vux-marquee-box" ref="box" :style="{transform: `translate3d(0,${currenTranslateY}px,0)`, transition: `transform ${noAnimate ? 0 : duration}ms`}">
+                <marquee-item v-for="item in this.noticeArray">{{item}}</marquee-item>
+            </ul>
         </div>
     </div>
 </template>
@@ -129,7 +127,7 @@
             }
         },
         components: {
-            MarqueeItem,
+            MarqueeItem
         }
     }
 </script>
@@ -143,7 +141,6 @@
     .vux-marquee-box {
         padding: 0;
         margin: 0;
-        width: 60%;
         height: auto;
 
         li {

@@ -2,11 +2,11 @@
     <div class="base-grid-grid-goods">
         <title-split title='热销商品'></title-split>
         <grid :cols="2">
-            <grid-item v-for="i in 2" :key="i">
-                <img src="@static/image/test/2.png" class="in-img"/>
-                <span class="in-goodsName">这里是图片标题</span>
+            <grid-item v-for="item in this.goodsData">
+                <img :src="item.img" class="in-img"/>
+                <span class="in-goodsName">{{item.goodsName}}</span>
                 <div class="in-price">
-                    <span>¥20.00</span>
+                    <span>¥{{item.price}}</span>
                     <button type="warn">购买</button>
                 </div>
             </grid-item>
@@ -16,10 +16,16 @@
 
 
 <script>
-    import { Grid, GridItem,XButton } from 'vux'
+    import {Grid, GridItem, XButton} from 'vux'
     import titleSplit from '@/base/title/title-split'
 
     export default {
+        props: {
+            goodsData: {
+                type: Array,
+                default: () => []
+            }
+        },
         components: {
             Grid,
             GridItem,
@@ -27,7 +33,7 @@
             titleSplit,
         },
         methods: {
-            onItemClick () {
+            onItemClick() {
                 console.log('on item click')
             }
         }
@@ -35,21 +41,20 @@
 </script>
 
 <style lang="less">
-    .weui-grid{
+    .weui-grid {
         padding: 10px !important;
 
         a {
-            border-right:0 !important;
+            border-right: 0 !important;
         }
     }
 
-    .weui-grids:before{
-        border-right:0 !important;
+    .weui-grids:before {
+        border-right: 0 !important;
     }
 
-
-    .weui-grids:before{
-        border-right:0 !important;
+    .weui-grids:before {
+        border-right: 0 !important;
     }
 
     .grid-center {
@@ -69,7 +74,7 @@
         color: #666;
     }
 
-    .vux-divider:after,.vux-divider:before {
+    .vux-divider:after, .vux-divider:before {
         content: '';
         display: table-cell;
         position: relative;
@@ -89,11 +94,11 @@
 
     .base-grid-grid-goods {
 
-        .in-img{
+        .in-img {
             width: 100%;
         }
 
-        .in-goodsName{
+        .in-goodsName {
             height: 1.7rem;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -102,6 +107,7 @@
             -webkit-box-orient: vertical;
             font-size: 0.65rem;
             line-height: 0.9rem;
+            color: #262626;
         }
 
         .in-price {
@@ -130,7 +136,7 @@
                 display: inline-block;
                 height: 1.1rem;
                 color: #fff;
-                line-height: 1rem;
+                line-height: 1.1rem;
                 background: #fe5455;
                 padding: 0rem 0.35rem;
                 border-radius: 0.1rem;
