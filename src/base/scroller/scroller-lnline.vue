@@ -1,8 +1,12 @@
 <template>
     <div>
         <scroller lock-y :scrollbar-x=false>
-            <div class="box1" :style="{width: s_width + 'px'}">
-                <div class="box1-item" v-for="i in 7"><span>{{' ' + i + ' '}}</span></div>
+            <div class="box1" :style="{width: this.data_img.length * 115 - 15 + 'px'}">
+                <div class="box1-item" v-for="item in this.data_img">
+                    <a href="javascript:">
+                        <img :src="item.img" class="in-img"/>
+                    </a>
+                </div>
             </div>
         </scroller>
     </div>
@@ -17,11 +21,6 @@
                 default: () => []
             }
         },
-        data () {
-            return {
-                s_width: this.data_img.length * 115 - 15
-            }
-        },
         components: {
             Scroller
         },
@@ -33,7 +32,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
     .box1 {
         height: 60px;
         position: relative;
@@ -48,6 +47,11 @@
         text-align: center;
         height: 60px;
         line-height: 60px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .box1-item:first-child {

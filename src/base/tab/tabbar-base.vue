@@ -18,12 +18,12 @@
             tabArray: {
                 type: Array,
                 default: () => [{
-                    url: '',
+                    url: '/home',
                     icon: 'static/image/base/tab-home.png',
                     iconActive: 'static/image/base/tab-home-selected.png',
                     title: '主页'
                 }, {
-                    url: '',
+                    url: '/category',
                     icon: 'static/image/base/tab-class.png',
                     iconActive: 'static/image/base/tab-class-selected.png',
                     title: '分类'

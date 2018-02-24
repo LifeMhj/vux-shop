@@ -27,6 +27,7 @@ let webpackConfig = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       '@static': resolve('static'),
+      'api': resolve('src/api')
     }
   },
   module: {

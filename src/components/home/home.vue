@@ -25,9 +25,6 @@
             <grid-goods :goodsData="goodsData"></grid-goods>
             <grid-goods :goodsData="goodsData"></grid-goods>
         </div>
-        <div>
-            <tabbar-base></tabbar-base>
-        </div>
     </div>
 </template>
 
@@ -38,7 +35,10 @@
     import BaseNotice from '@/base/notice/base-notice'
     import scrollerLnline from '@/base/scroller/scroller-lnline'
     import gridGoods from '@/base/grid/grid-goods'
-    import tabbarBase from '@/base/tab/tabbar-base'
+    import {ERR_OK} from 'api/config'
+    import {Banner} from 'api/banner'
+
+    var banner = new Banner()
 
     export default {
         components: {
@@ -48,40 +48,23 @@
             scrollerLnline,
             gridGoods,
             Flexbox,
-            FlexboxItem,
-            tabbarBase
+            FlexboxItem
         },
         data() {
             return {
                 noticeArray: ['这里是第一条自定义公告的标题', 'PHP是世界上最好的语言PHP是世界上最好的语言PHP是世界上最好的语言', '345'],
-                data_img: ['1', '2', '3', '4', '5', '6', '7'],
-                baseList: [{
-                    url: 'javascript:',
-                    img: 'static/image/test/1.jpg'
-                }, {
-                    url: 'javascript:',
-                    img: 'static/image/test/2.jpg'
-                }, {
-                    url: 'javascript:',
-                    img: 'static/image/test/3.jpg'
-                }, {
-                    url: 'javascript:',
-                    img: 'static/image/test/4.jpg'
-                }, {
-                    url: 'javascript:',
-                    img: 'static/image/test/5.jpg',
-
-                }],
+                data_img: [],
+                baseList: [],
                 goodsData: [{
                     img: 'static/image/test/2.png',
                     goodsName: "这里是图片标题",
                     price: "20.00",
-                },{
+                }, {
                     img: 'static/image/test/2.png',
                     goodsName: "这里是图片标题",
                     price: "20.00"
                 }],
-                tabArray : [{
+                tabArray: [{
                     url: '',
                     icon: 'static/image/base/tab-home.png',
                     iconActive: 'static/image/base/tab-home-selected.png',
@@ -102,6 +85,51 @@
                     iconActive: 'static/image/base/tab-user-selected.png',
                     title: '个人'
                 }]
+            }
+        },
+        created() {
+            this._getBanner1()
+            this._getBanner2()
+        },
+        methods: {
+            _getBanner1() {
+                banner.getBanner(1).then((res) => {
+                    if (res.code === ERR_OK) {
+                        let item = res.data.item,
+                            data = [];
+
+                        if (item) {
+                            item.forEach(function (item) {
+                                data.push({
+                                    url: 'javascript:',
+                                    img: process.env.BASE_IMG + item.img.url
+                                })
+                            })
+                        }
+
+                        this.baseList = data
+                    }
+                })
+            },
+
+            _getBanner2() {
+                banner.getBanner(2).then((res) => {
+                    if (res.code === ERR_OK) {
+                        let item = res.data.item,
+                            data = [];
+
+                        if (item) {
+                            item.forEach(function (item) {
+                                data.push({
+                                    url: 'javascript:',
+                                    img: process.env.BASE_IMG + item.img.url
+                                })
+                            })
+                        }
+
+                        this.data_img = data
+                    }
+                })
             }
         }
     }

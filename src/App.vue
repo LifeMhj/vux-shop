@@ -1,19 +1,25 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+    <div id="app">
+        <router-view></router-view>
+        <tabbar-base></tabbar-base>
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+    import tabbarBase from '@/base/tab/tabbar-base'
+
+    export default {
+        name: 'app',
+        components: {
+            tabbarBase
+        }
+    }
 </script>
 
 <style lang="less">
-@import '~vux/src/styles/reset.less';
+    @import '~vux/src/styles/reset.less';
 
-body {
-  background-color: #fbf9fe;
-}
+    body {
+        background-color: #fbf9fe;
+    }
 </style>
