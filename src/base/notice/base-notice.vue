@@ -2,13 +2,13 @@
     <div class="weui-cell base-notice-base-notice" :style="{backgroundColor: bgColor}" >
         <div class="in-group">
             <img class="in-image" src="@static/image/base/hotdot.jpg"  style="float:left"/>
-            <i class=" fa" :class="icon" :style="{color: iconColor}" style="float:left"></i>
-        </div>
+            <i class=" fa" :class="icon" :style="{color: iconColor}" style="float:left;font-size: 20px"></i>
 
-        <div class="vux-marquee" :style="{height: height + 'px',color : textColor}">
-            <ul class="vux-marquee-box" ref="box" :style="{transform: `translate3d(0,${currenTranslateY}px,0)`, transition: `transform ${noAnimate ? 0 : duration}ms`}">
-                <marquee-item v-for="item in this.noticeArray">{{item}}</marquee-item>
-            </ul>
+            <div class="vux-marquee" :style="{height: height + 'px',color : textColor}">
+                <ul class="vux-marquee-box" ref="box" :style="{transform: `translate3d(0,${currenTranslateY}px,0)`, transition: `transform ${noAnimate ? 0 : duration}ms`}">
+                    <marquee-item v-for="(item,index) in this.noticeArray" :key="index">{{item}}</marquee-item>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -135,6 +135,7 @@
     .vux-marquee {
         width: 100%;
         overflow: hidden;
+        padding-left: 5px;
         height: 20px;
         line-height: 20px;
     }
@@ -142,6 +143,7 @@
         padding: 0;
         margin: 0;
         height: auto;
+        font-size: 15px;
 
         li {
             margin: 0;
@@ -161,17 +163,15 @@
 
         .in-image{
             display: inline-block;
-            height: 1rem;
+            height: 20px;
             width: auto;
             position: relative;
             float: left;
-            padding-right: 0.5rem;
-            vertical-align: middle;
+            padding-right: 0.2rem;
         }
 
         .in-group{
             display: flex;
-            margin-right: 8px;
         }
     }
 </style>

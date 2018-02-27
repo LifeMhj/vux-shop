@@ -1,7 +1,7 @@
 <template>
     <div>
         <tabbar>
-            <tabbar-item v-for="(item,index) in this.tabArray" :link="item.url" :selected="index === 0 ? true : false">
+            <tabbar-item v-for="(item,index) in this.tabArray" :key="index" :link="item.url" :selected="index === 0 ? true : false">
                 <img slot="icon" :src="item.icon">
                 <img slot="icon-active" :src="item.iconActive">
                 <span slot="label">{{item.title}}</span>

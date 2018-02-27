@@ -1,8 +1,8 @@
 <template>
     <div class="base-grid-grid-goods">
-        <title-split title='热销商品'></title-split>
+        <title-split :title="this.title"></title-split>
         <grid :cols="2">
-            <grid-item v-for="item in this.goodsData">
+            <grid-item v-for="(item,index) in this.goodsData" :key="index">
                 <img :src="item.img" class="in-img"/>
                 <span class="in-goodsName">{{item.goodsName}}</span>
                 <div class="in-price">
@@ -24,6 +24,10 @@
             goodsData: {
                 type: Array,
                 default: () => []
+            },
+            title: {
+                type:String,
+                default: ''
             }
         },
         components: {

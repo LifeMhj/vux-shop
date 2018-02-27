@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div>
+        <!--<div>
             <search-goods></search-goods>
-        </div>
+        </div>-->
         <div>
             <base-swiper :baseList="baseList"></base-swiper>
         </div>
@@ -13,7 +13,7 @@
             <scroller-lnline :data_img="data_img"></scroller-lnline>
         </div>
         <div class="components-home-grid-goods">
-            <grid-goods :goodsData="goodsData"></grid-goods>
+            <grid-goods :goodsData="goodsData" title='热销商品'></grid-goods>
         </div>
         <div class="components-home-flexbox">
             <flexbox orient="vertical" :gutter="0">
@@ -22,7 +22,7 @@
             </flexbox>
         </div>
         <div>
-            <grid-goods :goodsData="goodsData"></grid-goods>
+            <grid-goods :goodsData="goodsData" title='新品上市'></grid-goods>
             <grid-goods :goodsData="goodsData"></grid-goods>
         </div>
     </div>
@@ -37,8 +37,10 @@
     import gridGoods from '@/base/grid/grid-goods'
     import {ERR_OK} from 'api/config'
     import {Banner} from 'api/banner'
+    import {Goods} from 'api/goods'
 
     var banner = new Banner()
+    var goods = new Goods()
 
     export default {
         components: {
@@ -90,6 +92,7 @@
         created() {
             this._getBanner1()
             this._getBanner2()
+            this._getNewGoods()
         },
         methods: {
             _getBanner1() {
@@ -128,6 +131,14 @@
                         }
 
                         this.data_img = data
+                    }
+                })
+            },
+
+            _getNewGoods(){
+                goods.getNewGoods(0,2).then((res) => {
+                    if (res.code === ERR_OK) {
+                        console.log(res);
                     }
                 })
             }

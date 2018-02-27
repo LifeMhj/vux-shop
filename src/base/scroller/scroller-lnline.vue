@@ -1,7 +1,7 @@
 <template>
     <div>
         <scroller lock-y :scrollbar-x=false>
-            <div class="box1" :style="{width: this.data_img.length * 115 - 15 + 'px'}">
+            <div class="box1" :style="{width: s_width}">
                 <div class="box1-item" v-for="item in this.data_img">
                     <a href="javascript:">
                         <img :src="item.img" class="in-img"/>
@@ -27,7 +27,13 @@
         mounted() {
 
         },
-        methods: {}
+        methods: {},
+
+        computed:{
+            s_width(){
+                return this.data_img.length * 115 - 15 + 'px'
+            }
+        }
 
     }
 </script>
@@ -40,7 +46,7 @@
 
     .box1-item {
         width: 100px;
-        background-color: #ccc;
+        background-color: inherit;
         display: inline-block;
         margin-left: 15px;
         float: left;
