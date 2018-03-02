@@ -16,9 +16,8 @@
             <grid-goods :goodsData="goodsData" title='热销商品'></grid-goods>
         </div>
         <div class="components-home-flexbox">
-            <flexbox orient="vertical" :gutter="0">
-                <flexbox-item><img class="flex-demo" src="@static/image/test/3.jpg" width="100%"/></flexbox-item>
-                <flexbox-item><img class="flex-demo" src="@static/image/test/4.jpg" width="100%"/></flexbox-item>
+            <flexbox orient="vertical" :gutter="0" v-for="(item,index) in this.themeList" :key="index">
+                <flexbox-item><img class="flex-demo" :src="item.url" width="100%"/></flexbox-item>
             </flexbox>
         </div>
         <div>
@@ -38,9 +37,11 @@
     import {ERR_OK} from 'api/config'
     import {Banner} from 'api/banner'
     import {Goods} from 'api/goods'
+    import {Theme} from 'api/theme'
 
     var banner = new Banner()
     var goods = new Goods()
+    var theme = new Theme()
 
     export default {
         components: {
@@ -54,18 +55,11 @@
         },
         data() {
             return {
-                noticeArray: ['这里是第一条自定义公告的标题', 'PHP是世界上最好的语言PHP是世界上最好的语言PHP是世界上最好的语言', '345'],
+                noticeArray: ['这里是第一条自定义公告的标题', 'PHP是世界上最好的语言PHP是世界上最好的语言PHP是世界上最好的语言', 'PHP据将征服全世界'],
                 data_img: [],
                 baseList: [],
-                goodsData: [{
-                    img: 'static/image/test/2.png',
-                    goodsName: "这里是图片标题",
-                    price: "20.00",
-                }, {
-                    img: 'static/image/test/2.png',
-                    goodsName: "这里是图片标题",
-                    price: "20.00"
-                }],
+                goodsData: [],
+                themeList: [],
                 tabArray: [{
                     url: '',
                     icon: 'static/image/base/tab-home.png',
@@ -93,55 +87,77 @@
             this._getBanner1()
             this._getBanner2()
             this._getNewGoods()
+            this._getThemes()
         },
         methods: {
             _getBanner1() {
+                let that = this
                 banner.getBanner(1).then((res) => {
                     if (res.code === ERR_OK) {
-                        let item = res.data.item,
-                            data = [];
-
+                        let item = res.data.item
                         if (item) {
                             item.forEach(function (item) {
-                                data.push({
+                                that.baseList.push({
                                     url: 'javascript:',
                                     img: process.env.BASE_IMG + item.img.url
                                 })
                             })
                         }
-
-                        this.baseList = data
                     }
                 })
             },
 
             _getBanner2() {
+                let that = this
                 banner.getBanner(2).then((res) => {
                     if (res.code === ERR_OK) {
-                        let item = res.data.item,
-                            data = [];
-
+                        let item = res.data.item
                         if (item) {
                             item.forEach(function (item) {
-                                data.push({
+                                that.data_img.push({
                                     url: 'javascript:',
                                     img: process.env.BASE_IMG + item.img.url
                                 })
                             })
                         }
-
-                        this.data_img = data
                     }
                 })
             },
 
             _getNewGoods(){
+                let that = this
                 goods.getNewGoods(0,2).then((res) => {
                     if (res.code === ERR_OK) {
-                        console.log(res);
+                        let item = res.data.data
+                        if (item) {
+                            item.forEach(function (item) {
+                                that.goodsData.push({
+                                    id:item.id,
+                                    thumb: process.env.BASE_UPLOAD + item.thumb,
+                                    title: item.title,
+                                    marketprice: item.marketprice
+                                })
+                            })
+                        }
                     }
                 })
-            }
+            },
+
+            _getThemes(){
+                let that = this
+                theme.getThemes(0,2).then((res) => {
+                    if (res.code === ERR_OK) {
+                        let item = res.data.data
+                        if (item) {
+                            item.forEach(function (item) {
+                                that.themeList.push({
+                                    url: process.env.BASE_IMG + item.top_img.url,
+                                })
+                            })
+                        }
+                    }
+                })
+            },
         }
     }
 </script>

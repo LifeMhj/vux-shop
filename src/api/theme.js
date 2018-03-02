@@ -1,13 +1,13 @@
 import { Base } from './base';
 
-class Goods extends Base {
+class Theme extends Base {
     constructor(){
         super();
     }
 
-    getNewGoods(page,paginate){
+    getThemes(page,paginate){
         var param = {
-            url: '/api/goods/getnewgoods',
+            url: '/api/theme/getthemes',
             data:{
                 page:page,
                 per_page:paginate
@@ -17,4 +17,4 @@ class Goods extends Base {
     }
 }
 
-export {Goods}
+export {Theme}

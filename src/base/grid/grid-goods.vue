@@ -3,10 +3,10 @@
         <title-split :title="this.title"></title-split>
         <grid :cols="2">
             <grid-item v-for="(item,index) in this.goodsData" :key="index">
-                <img :src="item.img" class="in-img"/>
-                <span class="in-goodsName">{{item.goodsName}}</span>
+                <img :src="item.thumb" class="in-img"/>
+                <span class="in-goodsName">{{item.title}}</span>
                 <div class="in-price">
-                    <span>¥{{item.price}}</span>
+                    <span>¥{{item.marketprice}}</span>
                     <button type="warn">购买</button>
                 </div>
             </grid-item>
