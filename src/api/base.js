@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {serviceUrl} from './config'
 
 class Base {
     constructor() {
@@ -8,11 +9,11 @@ class Base {
     //http 请求类, 当noRefech为true时，不做未授权重试机制
     request(params, noRefetch) {
         var that = this,
-            url = params.url,
+            url = serviceUrl.BASE_API + params.url,
 
             header = {
                 'content-type': 'application/json',
-                'token': ''
+                'token': '123',
             },
 
             data = {

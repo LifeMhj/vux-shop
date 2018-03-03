@@ -34,7 +34,7 @@
     import BaseNotice from '@/base/notice/base-notice'
     import scrollerLnline from '@/base/scroller/scroller-lnline'
     import gridGoods from '@/base/grid/grid-goods'
-    import {ERR_OK} from 'api/config'
+    import {ERR_OK,serviceUrl} from 'api/config'
     import {Banner} from 'api/banner'
     import {Goods} from 'api/goods'
     import {Theme} from 'api/theme'
@@ -46,6 +46,7 @@
     export default {
         components: {
             BaseSwiper,
+            serviceUrl,
             SearchGoods,
             BaseNotice,
             scrollerLnline,
@@ -99,7 +100,7 @@
                             item.forEach(function (item) {
                                 that.baseList.push({
                                     url: 'javascript:',
-                                    img: process.env.BASE_IMG + item.img.url
+                                    img: serviceUrl.BASE_IMG + item.img.url
                                 })
                             })
                         }
@@ -116,7 +117,7 @@
                             item.forEach(function (item) {
                                 that.data_img.push({
                                     url: 'javascript:',
-                                    img: process.env.BASE_IMG + item.img.url
+                                    img: serviceUrl.BASE_IMG + item.img.url
                                 })
                             })
                         }
@@ -133,7 +134,7 @@
                             item.forEach(function (item) {
                                 that.goodsData.push({
                                     id:item.id,
-                                    thumb: process.env.BASE_UPLOAD + item.thumb,
+                                    thumb: serviceUrl.BASE_UPLOAD + item.thumb,
                                     title: item.title,
                                     marketprice: item.marketprice
                                 })
@@ -151,7 +152,7 @@
                         if (item) {
                             item.forEach(function (item) {
                                 that.themeList.push({
-                                    url: process.env.BASE_IMG + item.top_img.url,
+                                    url: serviceUrl.BASE_IMG + item.top_img.url,
                                 })
                             })
                         }
