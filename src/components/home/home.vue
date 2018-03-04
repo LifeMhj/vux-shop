@@ -24,6 +24,7 @@
             <grid-goods :goodsData="goodsData" title='新品上市'></grid-goods>
             <grid-goods :goodsData="goodsData"></grid-goods>
         </div>
+        <div style="height: 60px"></div>
     </div>
 </template>
 
