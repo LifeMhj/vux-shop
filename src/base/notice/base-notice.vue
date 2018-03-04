@@ -1,5 +1,5 @@
 <template>
-    <div class="weui-cell base-notice-base-notice" :style="{backgroundColor: bgColor}" >
+    <div class="base-notice-base-notice" :style="{backgroundColor: bgColor}" >
         <div class="in-group">
             <img class="in-image" src="@static/image/base/hotdot.jpg"  style="float:left"/>
             <i class=" fa" :class="icon" :style="{color: iconColor}" style="float:left;font-size: 20px"></i>
