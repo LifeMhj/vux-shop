@@ -28,7 +28,7 @@
                     iconActive: 'static/image/base/tab-class-selected.png',
                     title: '分类'
                 }, {
-                    url: '',
+                    url: '/cart',
                     icon: 'static/image/base/tab-cart.png',
                     iconActive: 'static/image/base/tab-cart-selected.png',
                     title: '购物车'
